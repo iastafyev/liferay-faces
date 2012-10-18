@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite"
 	xmlns:liferay-ui="http://liferay.com/faces/ui"
 	xmlns:liferay-ui-internal="http://liferay.com/faces/ui-internal"
-	xmlns:liferay-util="http://liferay.com/faces/util"
+	xmlns:util="http://liferay.com/faces/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-transitional.xsd">
 
@@ -37,7 +37,7 @@
 		<c:set var="doAsUserId" value="#{liferay.themeDisplay.doAsUserId}" />
 		<c:choose>
 			<c:when test="#{empty cc.attrs.editorImpl}">
-				<c:set var="editorImpl" value="#{liferay-util:portalProperty('editor.wysiwyg.default')}" />
+				<c:set var="editorImpl" value="#{util:portalProperty('editor.wysiwyg.default')}" />
 			</c:when>
 			<c:otherwise>
 				<c:set var="editorImpl" value="#{cc.attrs.editorImpl}" />
@@ -60,13 +60,13 @@
 			</c:otherwise>
 		</c:choose>
 		<c:set var="responseNamespace" value="#{facesContext.externalContext.response.namespace}" />
-		<c:set var="clientIdPrefix" value="#{liferay-util:stringReplace(cc.clientId, ':', '_')}" />
+		<c:set var="clientIdPrefix" value="#{util:stringReplace(cc.clientId, ':', '_')}" />
 		<c:set var="prefixedInitMethod" value="#{clientIdPrefix}initRichText" />
 		<c:set var="prefixedOnChangeMethod" value="#{clientIdPrefix}richTextChanged" />
 		<c:set var="prefixedCountCharsMethod" value="#{clientIdPrefix}countTotalAlphaNumChars" />
 		<c:choose>
 			<c:when test="#{empty cc.attrs.pathThemeCss}">
-				<c:set var="pathThemeCss" value="#{liferay-util:escapeURL(liferay.themeDisplay.pathThemeCss)}" />
+				<c:set var="pathThemeCss" value="#{util:escapeURL(liferay.themeDisplay.pathThemeCss)}" />
 			</c:when>
 			<c:otherwise>
 				<c:set var="pathThemeCss" value="#{cc.attrs.pathThemeCss}" />
