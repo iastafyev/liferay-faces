@@ -30,11 +30,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.liferay.faces.portal.servlet.NonNamespacedHttpServletRequest;
 import com.liferay.faces.util.jsp.JspIncludeResponse;
 import com.liferay.faces.util.lang.StringPool;
 import com.liferay.faces.util.logging.Logger;
 import com.liferay.faces.util.logging.LoggerFactory;
 
+import com.liferay.portal.kernel.editor.EditorUtil;
 import com.liferay.portal.util.PortalUtil;
 
 
@@ -60,6 +62,8 @@ public class InputEditorInternalRenderer extends Renderer {
 		PortletRequest portletRequest = (PortletRequest) externalContext.getRequest();
 		PortletResponse portletResponse = (PortletResponse) externalContext.getResponse();
 		HttpServletRequest httpServletRequest = PortalUtil.getHttpServletRequest(portletRequest);
+		httpServletRequest = new NonNamespacedHttpServletRequest(httpServletRequest);
+
 		HttpServletResponse httpServletResponse = PortalUtil.getHttpServletResponse(portletResponse);
 
 		// Build up a URL that can be used to invoke the liferay-ui:input-editor JSP tag.
@@ -71,6 +75,11 @@ public class InputEditorInternalRenderer extends Renderer {
 		queryString.append(StringPool.EQUAL);
 
 		String editorImpl = (String) attributes.get("editorImpl");
+
+		if (editorImpl == null) {
+			editorImpl = CKEDITOR;
+		}
+
 		queryString.append(editorImpl);
 		queryString.append(StringPool.AMPERSAND);
 		queryString.append("height");
@@ -117,7 +126,10 @@ public class InputEditorInternalRenderer extends Renderer {
 		// Write the captured output from the JSP tag to the Faces responseWriter.
 		if (bufferedResponse != null) {
 
-			if (CKEDITOR.equals(editorImpl) && (getLiferayPortletRequest(portletRequest) instanceof ResourceRequest)) {
+			String editorType = EditorUtil.getEditorValue(httpServletRequest, editorImpl);
+
+			if ((editorType.indexOf(CKEDITOR) >= 0) &&
+					(getLiferayPortletRequest(portletRequest) instanceof ResourceRequest)) {
 				bufferedResponse = removeAllElements(bufferedResponse, "style");
 				bufferedResponse = removeAllElements(bufferedResponse, "script");
 			}
@@ -161,4 +173,5 @@ public class InputEditorInternalRenderer extends Renderer {
 
 		return liferayPortletRequest;
 	}
+
 }

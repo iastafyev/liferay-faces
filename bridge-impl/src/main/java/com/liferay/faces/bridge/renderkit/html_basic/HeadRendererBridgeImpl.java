@@ -157,6 +157,8 @@ public class HeadRendererBridgeImpl extends BridgeRenderer {
 				ResourceInfo resourceInfo = new ResourceInfo(uiComponentResource);
 				boolean alreadyPresentInPortalPageHead = headResourceIdsFromManagedBean.contains(resourceInfo.getId());
 
+				// If the resource is already present in the <head> section of the portal page, then simply output a
+				// logger message to this fact.
 				if (alreadyPresentInPortalPageHead) {
 
 					if (logger.isDebugEnabled()) {
@@ -168,6 +170,9 @@ public class HeadRendererBridgeImpl extends BridgeRenderer {
 							});
 					}
 				}
+
+				// Otherwise, since it is not possible to add it to the <head> section, the resource must be relocated
+				// to the body.
 				else {
 					logger.debug(
 						"Relocating resource to body (since it was added via Ajax and is not yet present in head): name=[{0}] library=[{1}] rendererType=[{2}] value=[{3}] className=[{4}]",
