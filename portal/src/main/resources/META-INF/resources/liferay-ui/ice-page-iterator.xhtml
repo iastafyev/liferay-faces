@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:component xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html" xmlns:cc="http://java.sun.com/jsf/composite"
-	xmlns:liferay-ui="http://liferay.com/faces/ui" xmlns:liferay-util="http://liferay.com/faces/util"
+	xmlns:liferay-ui="http://liferay.com/faces/ui" xmlns:util="http://liferay.com/faces/util"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-transitional.xsd">
 
@@ -25,7 +25,7 @@
 				<h:panelGroup layout="block" styleClass="page-selector" />
 				<h:panelGrid columns="2" style="#{cc.attrs.style}" styleClass="#{cc.attrs.cssClass} #{cc.attrs.styleClass}">
 					<c:if test="#{cc.attrs.deleteRendered}">
-						<c:set value="#{liferay-util:findDataModel(cc.attrs.for)}" var="forDataModel" />
+						<c:set value="#{util:findDataModel(cc.attrs.for)}" var="forDataModel" />
 						<c:set value="#{forDataModel.rowMarks.count}" var="#{markedRowCount}" />
 						<c:set value="#{cc.attrs.deleteLabel}" var="deleteLabel" />
 						<c:if test="#{empty cc.attrs.deleteLabel}">
