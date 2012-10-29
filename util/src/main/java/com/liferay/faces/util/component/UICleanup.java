@@ -11,32 +11,17 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-package com.liferay.faces.bridge.container.liferay;
+package com.liferay.faces.util.component;
 
-import javax.portlet.PortletMode;
-import javax.portlet.PortletURL;
-import javax.portlet.WindowState;
+import java.io.IOException;
+
+import javax.faces.context.FacesContext;
 
 
 /**
  * @author  Neil Griffin
  */
-public class ParsedPortletURL extends ParsedBaseURL {
+public interface UICleanup {
 
-	private PortletMode portletMode;
-	private WindowState windowState;
-
-	public ParsedPortletURL(PortletURL portletURL) {
-		super(portletURL);
-		this.portletMode = portletURL.getPortletMode();
-		this.windowState = portletURL.getWindowState();
-	}
-
-	public PortletMode getPortletMode() {
-		return portletMode;
-	}
-
-	public WindowState getWindowState() {
-		return windowState;
-	}
+	public void encodeCleanup(FacesContext facesContext) throws IOException;
 }

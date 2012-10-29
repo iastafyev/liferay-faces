@@ -1,3 +1,4 @@
+<%--
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
@@ -11,27 +12,11 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-package com.liferay.faces.bridge.container.liferay;
+--%>
 
-import javax.portlet.PortletURL;
-
+<%--
 /**
- * @author  Neil Griffin
+ * This is a dummy file that exists in order to eliminate an Eclipse JSP validation error in the
+ * src/main/webapp/META-INF/custom-jsp/html/portlet/login/login.jsp file.
  */
-public class LiferayActionURL extends LiferayPortletURL {
-
-	public LiferayActionURL(PortletURL portletURL, String responseNamespace) {
-		super(portletURL, responseNamespace);
-	}
-
-	@Override
-	public String getPortletLifecycleId() {
-		return LiferayConstants.LIFECYCLE_ACTION_PHASE_ID;
-	}
-
-	@Override
-	public boolean isWindowStateRequired() {
-		return true;
-	}
-
-}
+--%>

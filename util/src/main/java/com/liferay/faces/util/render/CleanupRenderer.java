@@ -11,27 +11,19 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-package com.liferay.faces.bridge.container.liferay;
+package com.liferay.faces.util.render;
 
-import javax.portlet.PortletURL;
+import java.io.IOException;
+
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+
 
 /**
  * @author  Neil Griffin
  */
-public class LiferayActionURL extends LiferayPortletURL {
+public interface CleanupRenderer {
 
-	public LiferayActionURL(PortletURL portletURL, String responseNamespace) {
-		super(portletURL, responseNamespace);
-	}
-
-	@Override
-	public String getPortletLifecycleId() {
-		return LiferayConstants.LIFECYCLE_ACTION_PHASE_ID;
-	}
-
-	@Override
-	public boolean isWindowStateRequired() {
-		return true;
-	}
+	public void encodeCleanup(FacesContext facesContext, UIComponent uiComponent) throws IOException;
 
 }
